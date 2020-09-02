@@ -129,19 +129,19 @@ public class ActivityP1 extends AppCompatActivity {
             double y = event.values[1];
             double z = event.values[2];
 
-            if(x<-20||x>20){
+            if(x<-15||x>25){
                 sacudidasX++;
             }
 
-            if(y<0||y>30){
+            if(y<-10||y>20){
                 sacudidasY++;
             }
             if(sacudidasY>=10){
-                btnAtaqueChifrada.setText("Chifrada melhorada");
+               btnAtaqueInvestida.setText("Investida melhorada");
             }
 
             if (sacudidasX >=10){
-                btnAtaqueInvestida.setText("Investida Melhorada");
+                btnAtaqueChifrada.setText("Chifrada Melhorada");
             }
         }
 
@@ -199,7 +199,7 @@ public class ActivityP1 extends AppCompatActivity {
         controle++;
         int sorteado = rd.nextInt(10) + 1;
 
-        if (sacudidasX >=10){
+        if (sacudidasY >=10){
             if(sorteado == 1){
                 ataqueVideoPersonagem = 1;
                 txtInfoPersonagem.setText("O boss defendeu o ataque.");
@@ -217,7 +217,7 @@ public class ActivityP1 extends AppCompatActivity {
                 txtInfoPersonagem.setText("Dano critico melhorado. -1700");
                 narrar(txtInfoPersonagem.getText().toString());
             }
-            sacudidasX = 0;
+            sacudidasY = 0;
             btnAtaqueInvestida.setText("Investida");
         } else {
             if (sorteado == 1) {
@@ -285,7 +285,7 @@ public class ActivityP1 extends AppCompatActivity {
         Random rd = new Random(new Date().getTime());
         int sorteado = rd.nextInt(10) + 1;
 
-        if (sacudidasY >=20){
+        if (sacudidasX >=10){
             if (sorteado == 1) {
                 ataqueVideoPersonagem = 3;
                 txtInfoPersonagem.setText("O boss defendeu o ataque.");
@@ -303,7 +303,7 @@ public class ActivityP1 extends AppCompatActivity {
                 txtInfoPersonagem.setText("Dano critico melhorado. -3000");
                 narrar(txtInfoPersonagem.getText().toString());
             }
-            sacudidasY = 0;
+            sacudidasX = 0;
             btnAtaqueChifrada.setText("Chifrada");
         } else {
             if (sorteado == 1) {
@@ -333,6 +333,10 @@ public class ActivityP1 extends AppCompatActivity {
 
         if (controle == 2) {
             btnAtaqueChifrada.setEnabled(true);
+        }
+
+        if (controle > 2){
+            controle = 0;
         }
     }
 
@@ -437,6 +441,7 @@ public class ActivityP1 extends AppCompatActivity {
         btnAtaqueInvestida.setEnabled(false);
         btnAtaqueArremesso.setEnabled(false);
         btnAtaqueChifrada.setEnabled(false);
+        btnVoz.setEnabled(false);
 
         if(acao==1) ataqueInvestidaPersonagem();
         if(acao==2) ataqueArremessoPersonagem();
@@ -481,6 +486,7 @@ public class ActivityP1 extends AppCompatActivity {
                                 txtHpPersonagem.setText("HP " + hpPersonagem);
                                 btnAtaqueInvestida.setEnabled(true);
                                 btnAtaqueArremesso.setEnabled(true);
+                                btnVoz.setEnabled(true);
                                 controleAtaques();
 
                             }
